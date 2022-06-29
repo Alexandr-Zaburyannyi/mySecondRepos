@@ -2,30 +2,32 @@ const pullDataBtn = document.querySelector(".btn");
 
 const table = document.querySelector(".table");
 
+const addRowButton = document.querySelector(".btn-success");
+
 let arrayOfUsers = [];
 
 
 
-pullDataBtn.addEventListener("click",() => {
-    table.classList.remove('d-none');
-    pullData();
+pullDataBtn.addEventListener("click",async () => {
+    pullDataBtn.classList.add('d-none');
+    pullDataBtn.parentElement.classList.add('d-none');
+    await pullData();
+    addRowButton.classList.remove('d-none');
     arrayOfUsers.forEach(user => {
         table.insertAdjacentHTML("beforeend", 
         `<tr class="table-light">
-                <th scope="row">${user.id}</th>
-                <td>${user.first_name}</td>
-                <td>${user.last_name}</td>
-                <td>${user.email}</td>
-                <td>${user.city}</td>
-                <td>${user.company}</td>
-                <td></td>
-                <td></td>
-            </tr>
-        `)
-    })
-    // let firstUser = arrayOfUsers[0];
-    // console.log(firstUser)
-})
+            <th scope="row">${user.id}</th>
+            <td>${user.first_name}</td>
+            <td>${user.last_name}</td>
+            <td>${user.email}</td>
+            <td>${user.city}</td>
+            <td>${user.company}</td>
+            <td><button type="button" class="btn  btn-warning btn-sm">edit</button></td>
+            <td><button type="button" class="btn btn-danger btn-sm">remove</button></td>
+        </tr>`)
+    });
+    table.classList.remove('d-none');
+});
 
 
 
@@ -35,4 +37,4 @@ const pulledData = await fetch("https://gist.githubusercontent.com/Alexandr-Zabu
     json.forEach(user => {
        arrayOfUsers.push(user);
     })
-}
+};
