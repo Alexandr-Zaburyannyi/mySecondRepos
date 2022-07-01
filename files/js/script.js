@@ -101,7 +101,7 @@ table.addEventListener('click' , () => {
 
 let positions;
 
-table.addEventListener('click',async () => {
+table.addEventListener('click', () => {
    for(button of editRowButtons){
         if (event.target === button) {
         addRowSubmitButton.classList.add('d-none');
